@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<div th:replace="fragments/header :: header-css" />
+
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header" />
+
+
+	<div class="container">
+		<div class="page-header">
+			<input name="userId" type="hidden" th:value="${userId}"></input> <input
+				name="service" type="hidden" th:value="${serviceName}"></input> <input
+				name="next" type="hidden" th:value="${next}"></input>
+			<h1>
+				채널관리 (<span th:text="${userId}"></span>)<a
+					href="/remains/tservice/addChannel"
+					class="btn btn-lg btn-success pull-right"><span
+					class="glyphicon glyphicon-plus"></span> 구독 채널 추가</a>
+			</h1>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="panel panel-default">
+
+			<input name="userId" id="userId" type="hidden" th:value="${userId}"></input>
+			<input name="serviceName" id="serviceName" type="hidden"
+				th:value="${serviceName}"></input>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>그룹</th>
+						<th>채널</th>
+						<th>채널정보</th>
+						<th>구독관리</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="follow : ${followingChannels}">
+						<td th:text="${follow.channel.group}"></td>
+						<td th:text="${follow.channel.id}"></td>
+						<td><button
+							class="btn btn-primary btn-xs channel"><span
+								class="glyphicon glyphicon-edit"></span>채널정보</button></td>
+						<td>
+							<button class="btn btn-danger btn-xs delete">
+								<span class="glyphicon glyphicon-remove-circle"></span> 구독취소
+							</button>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="container"></div>
+	<!-- /.container -->
+
+
+
+	<div th:replace="fragments/footer :: footer" />
+	<script type="text/javascript" th:src="@{/js/channelManage.js}"></script>
+	<script type="text/javascript" th:src="@{/js/event.js}"></script>
+
+</body>
+</html>

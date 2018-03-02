@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<div th:replace="fragments/header :: header-css" />
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<div class="container">
+		<form th:action="@{/remains/myfeed/content/writeContent}"
+			class="form-group" th:object="${writeContent}" method="post">
+			<input name="next" type="hidden" th:value="${next}"></input>
+			<input name="serviceName" id="serviceName" type="hidden"
+				th:value="${serviceName}"></input> <input name="channelGroup"
+				id="channelGroup" type="hidden" th:value="${channelGroup}"></input>
+			<input name="channelId" id="channelId" type="hidden"
+				th:value="${channelId}"></input> <label for="comment">Content:</label>
+			<textarea name="contentBody" class="form-control" rows="5"
+				id="contentBody"></textarea>
+			<button class="btn btn-lg btn-success" type="submit"
+				style="margin-top: 20px;" value="Close this window">Add
+				Content</button>
+		</form>
+	</div>
+	<div class="container">
+		<div class="panel panel-default">
+
+			
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>채널</th>
+						<th>컨텐츠</th>
+						<th>시간</th>
+						<th>취소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="content : ${channelContentList}">
+						<td th:text="${content.getContentResponse.channel.id}"></td>
+						<td th:text="${content.getContentResponse.contentBody}"></td>
+						<td th:text="${content.getContentResponse.createDate}"></td>
+						
+						<td>
+							<button class="btn btn-danger btn-xs delete">
+								<span class="glyphicon glyphicon-remove-circle"></span> 삭제
+							</button>
+						</td>
+						<td type="hidden"
+							th:value="${content.getContentResponse.contentId}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer" />
+	<script type="text/javascript" th:src="@{/js/channelContentManage.js}"></script>
+	<script type="text/javascript" th:src="@{/js/channelContentEvent.js}"></script>
+</body>
+</html>

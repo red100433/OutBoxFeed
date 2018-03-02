@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+    <link rel="stylesheet" th:href="@{/css/login.css}"
+          href="../../css/login.css" />
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h3 class="text-center login-title" style="color: green; font-weight: bold">AddFollowing</h3>
+            <div class="account-wall">
+                <img src="/img/agreement.png" width="80px" height="80px" style="margin-left: auto; margin-right: auto; display: block;"
+                     alt=""></img>
+                    
+                <form action="#" class="form-signin" th:action="@{/remains/tservice/follows/follow}" th:object="${followingRequest}" method="post">
+                    <input name = "userId" id="userId" type = "hidden" th:value="${userId}" ></input>
+        			<input name = "serviceName" id="serviceName" type = "hidden" th:value="${serviceName}" ></input>
+                    <input type="hidden" class="form-control" placeholder="channelGroup" name = "channelGroup" id="channelGroup" value="InternGroup" ></input>
+                    <input type="text" class="form-control" placeholder="channelId" name= "channelId" id="channelId" value="testChannel" ></input>
+                    <button class="btn btn-lg btn-success btn-block" type="submit" style = "margin-top : 20px;" value="Close this window" >
+                        Add</button>
+                        
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

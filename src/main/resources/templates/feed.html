@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>home</title>
+<div th:replace="fragments/header :: header-css" />
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<input name="next" type="hidden" th:value="${next}"></input>
+				<input name="userId" type="hidden" th:value="${userId}"></input>
+				<input name="channelGroup" type="hidden" th:value="${channelGroup}"/>
+				<input name="serviceName" type="hidden" th:value="${serviceName}"/>
+				<div class="list-group">
+
+
+					<li th:each="Content : ${getContentResponse}"><a href="#"
+						class="list-group-item"> <span
+							class="glyphicon glyphicon-star-empty"></span><span class="name"
+							th:text="${Content.getContentResponse.channel.id}"
+							style="min-width: 120px; display: inline-block;"></span> <span
+							class="" th:text="${Content.getContentResponse.contentBody}"></span> <span class="text-muted"
+							style="font-size: 11px;" ></span>
+							<span class="badge" th:text="${Content.getContentResponse.createDate}"></span> <span
+							class="pull-right"><span
+								class="glyphicon glyphicon-paperclip"> </span></span></a></li>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer" />
+	<script type="text/javascript" th:src="@{/js/feedManage.js}"></script>
+</body>
+</html>
